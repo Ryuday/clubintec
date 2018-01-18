@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::all();
+
+        $title = 'Listado de usuarios';
+
+        return view('home', compact('title', 'users'));
+
+    }
+
+    public function show(User $user)
+    {
+      $title = 'Detalles del usuario';
+
+      return view('users.show', compact('title', 'user'));
     }
 }

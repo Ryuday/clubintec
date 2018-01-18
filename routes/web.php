@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/usuarios/{user}', 'HomeController@show')
+    ->where('user', '[0-9]+')
+    ->name('users.show');
