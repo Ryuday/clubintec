@@ -4,20 +4,28 @@
 @section('subtitle', "Datos de {$user->name}")
 
 @section('content')
+  <div class="form-horizontal">
 
-      <p>Nombre del usuario: {{ $user->name }}</p>
-      <p>Correo electrónico: {{ $user->email }}</p>
-
-      <p>
-
-        <a href="{{ route('users.edit', ['id' => $user->id]) }}">Editar usuario</a>
-
-      </p>
-
-      <p>
-
-        <a href="{{ route('home') }}">Regresar al listado de usuarios</a>
-
-      </p>
-
+    <div class="form-group">
+        <label class="col-md-4 control-label">Nombre</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" value="{{ $user->name }}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">Dirección de Correo</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" value="{{ $user->email }}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+          <a class="btn btn-primary" href="{{ route('users.edit', ['id' => $user->id]) }}">
+            Editar
+          </a>
+          <a class="btn btn-default" href="{{ route('home') }}">
+            Regresar
+          </a>
+        </div>
+    </div>
 @endsection
