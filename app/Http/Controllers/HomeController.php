@@ -27,16 +27,21 @@ class HomeController extends Controller
     {
         $users = User::all();
 
-        $title = 'Listado de usuarios';
-
-        return view('home', compact('title', 'users'));
+        return view('home', compact('users'));
 
     }
 
     public function show(User $user)
     {
-      $title = 'Detalles del usuario';
 
-      return view('users.show', compact('title', 'user'));
+      return view('users.show', compact('user'));
     }
+
+    public function edit(User $user)
+    {
+      $title = 'Actualizar usuario';
+
+      return view('users.edit', compact('title', 'user'));
+    }
+
 }

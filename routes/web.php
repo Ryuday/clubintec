@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/usuarios/{user}', 'HomeController@show')
     ->where('user', '[0-9]+')
     ->name('users.show');
+
+Route::get('/usuarios/{user}/editar', 'HomeController@edit')
+    ->name('users.edit');
