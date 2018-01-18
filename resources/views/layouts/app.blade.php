@@ -58,7 +58,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Cerrar sesión
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -77,7 +77,11 @@
             <div class="col-md-8 col-md-offset-2">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h1>@yield('subtitle')</h1>
+                  @guest
+                    Iniciar Sesión
+                  @else
+                    @yield('subtitle')
+                  @endguest
                 </div>
                 <div class="panel-body">
                   @yield('content')
