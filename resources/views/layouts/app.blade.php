@@ -77,11 +77,7 @@
             <div class="col-md-8 col-md-offset-2">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  @guest
-                    Iniciar Sesión
-                  @else
-                    @yield('subtitle')
-                  @endguest
+                    @yield('subtitle', 'Iniciar Sesión')
                 </div>
                 <div class="panel-body">
                   @yield('content')

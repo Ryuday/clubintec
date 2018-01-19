@@ -19,6 +19,12 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-md-4 control-label">Privilegios</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" value="{{ $user->isAdmin }}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
           <a class="btn btn-primary" href="{{ route('users.edit', ['id' => $user->id]) }}">
             Editar
