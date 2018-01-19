@@ -21,7 +21,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label">Privilegios</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" value="{{ $user->isAdmin }}" disabled>
+            <input type="text" class="form-control" value="{{ $user->is_admin }}" disabled>
         </div>
     </div>
     <div class="form-group">
