@@ -1,12 +1,14 @@
 @extends('layouts.app')
 @section('title', "Usuarios")
 @section('subtitle')
-  <div class="row justify-content-between">
-    <div class="col">
-      Listado de usuarios
-    </div>
-    <div class="col">
-      <a href="#">Registrar usuario</a>
+  <div class="content">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Listado de usuarios</h5>
+      </div>
+      <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-8">
+        <a class="btn btn-primary" href="#">Registrar usuario</a>
+      </div>
     </div>
   </div>
 @endsection
