@@ -18,9 +18,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Authentication Routes...
+$this->get('iniciar/sesion', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('iniciar/sesion', 'Auth\LoginController@login');
+$this->post('cerrar/sesion', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Registration Routes...
+$this->get('registrar', 'Auth\RegisterController@showRegistrationForm')->name('register');
+$this->post('registrar', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+$this->get('contraseña/restablecer', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+$this->post('contraseña/correo', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+$this->get('contraseña/restablecer/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+$this->post('contraseña/restablecer', 'Auth\ResetPasswordController@reset');
+
+Route::get('/inicio', 'HomeController@index')->name('home');
 
 Route::get('/usuarios/{user}', 'HomeController@show')
     ->where('user', '[0-9]+')
