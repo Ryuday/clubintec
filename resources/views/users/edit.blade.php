@@ -53,7 +53,7 @@
                 <button type="submit" class="btn btn-success">
                   Actualizar usuario
                 </button>
-                @if(Auth::user()->isAdmin)
+                @if(Auth::user()->is_admin)
                   <a class="btn btn-danger" href="{{ route('users.show', ['id' => $user->id]) }}">
                     Cancelar
                   </a>
@@ -66,7 +66,7 @@
         </div>
 
       </form>
-      @if(Auth::user()->isAdmin)
+      @if(Auth::user()->is_admin)
         <div class="form-group">
             <div class="col-md-8 col-md-offset-4">
                 <a class="btn btn-link" href="{{ route('home') }}">
