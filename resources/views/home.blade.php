@@ -19,18 +19,37 @@
     </div>
   @endif
   @if ( Auth::user()->is_admin === 1)
-    <ul>
-      @forelse ( $users as $user )
-        <li>
-          {{ $user->name }}, ({{ $user->email }})
-          <a href="{{ route('users.show', ['id' => $user->id]) }}">Ver detalles</a>
-        </li>
-      @empty
-        <li>No hay usuarios registrados.</li>
-      @endforelse
-    </ul>
+    <table class="table table-bordered" id="users-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+            </tr>
+        </thead>
+    </table>
   @else
     <a href="{{ route('users.show', ['id' => Auth::user()->id]) }}">Ver detalles</a>
   @endif
 
 @endsection
+@push('scripts')
+<script>
+$(function() {
+    $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('datatables.data') !!}',
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' }
+        ]
+    });
+});
+</script>
+@endpush

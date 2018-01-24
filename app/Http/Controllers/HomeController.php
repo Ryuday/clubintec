@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,16 @@ class HomeController extends Controller
 
         return view('home', compact('users'));
 
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function anyData()
+    {
+        return Datatables::of(User::query())->make(true);
     }
 
     public function show(User $user)
