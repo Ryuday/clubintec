@@ -34,6 +34,7 @@ $this->get('contraseña/restablecer/{token}', 'Auth\ResetPasswordController@show
 $this->post('contraseña/restablecer', 'Auth\ResetPasswordController@reset');
 
 Route::get('/inicio', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 
 Route::get('/usuarios/{user}', 'HomeController@show')
     ->where('user', '[0-9]+')
