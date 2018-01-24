@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\DataTables;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\CollectionDataTable;
 
 class HomeController extends Controller
 {
@@ -39,7 +41,12 @@ class HomeController extends Controller
      */
     public function anyData()
     {
-        return Datatables::of(User::query())->make(true);
+        $model = User::query();
+        return DataTables::eloquent($model)
+                ->addColumn('action', function ($user) {
+                  return '<a href="'.route("users.show", ["id" => $user->id]).'" class="btn btn-xs btn-success">Ver</a> <a href="'.route("users.edit", ["id" => $user->id]).'" class="btn btn-xs btn-primary">Editar</a>';
+                })
+                ->toJson();
     }
 
     public function show(User $user)
