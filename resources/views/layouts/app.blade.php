@@ -38,18 +38,28 @@
         <ul class="nav navbar-nav navbar-right">
           <!-- Authentication Links -->
           @guest
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}">Registrar</a>
-            </li>
+            @if (Request::url() == route('register') || Request::url() == route('contact'))
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a>
+              </li>
+            @endif
+            @if (Request::url() == route('login') || Request::url() == route('contact'))
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}">Registrar</a>
+              </li>
+            @endif
+            @if (Request::url() == route('login') || Request::url() == route('register'))
+              <li class="nav-item">
+                <a href="{{ route('contact') }}">Contacto</a>
+              </li>
+            @endif
           @else
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ Auth::user()->username }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('contact') }}">Contacto</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
