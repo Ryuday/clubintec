@@ -17,11 +17,11 @@ class ContactController extends Controller
     public function store(Request $request)
     {
 
-      #return new \App\Mail\EmailUser($request);
-
       Mail::to('clubintec@gmail.com', 'Contacto')
         ->send(new \App\Mail\EmailUser($request));
-      #Session::flash('message', 'Mensaje enviado correctamente');
+
+      flash('Mensaje enviado correctamente')->success();
+
       return view('emails.contact');
 
     }
