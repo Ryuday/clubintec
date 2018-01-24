@@ -54,6 +54,11 @@
               </li>
             @endif
           @else
+            @if (Request::url() == route('contact'))
+              <li class="nav-item">
+                <a href="{{ route('home') }}">Inicio</a>
+              </li>
+            @endif
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ Auth::user()->username }}
