@@ -49,23 +49,4 @@ class HomeController extends Controller
                 ->toJson();
     }
 
-    public function show(User $user)
-    {
-
-      return view('users.show', compact('user'));
-    }
-
-    public function edit(User $user)
-    {
-      $title = 'Actualizar usuario';
-      $roles = [
-        1 => "Administrador",
-        2 => "Docente",
-        3 => "Secretaria",
-        4 => "Estudiante"
-      ];
-
-      return view('users.edit', compact('title', 'user', 'roles'));
-    }
-
 }

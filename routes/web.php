@@ -39,12 +39,15 @@ Route::get('/home', 'HomeController@index');
 Route::get('/inicio/datos', 'HomeController@anyData')
 ->name('datatables.data');
 
-Route::get('/usuarios/{user}', 'HomeController@show')
+Route::get('/usuarios/{user}', 'UserController@show')
     ->where('user', '[0-9]+')
     ->name('users.show');
 
-Route::get('/usuarios/{user}/editar', 'HomeController@edit')
+Route::get('/usuarios/{user}/editar', 'UserController@edit')
     ->name('users.edit');
+
+Route::put('/usuarios/{user}', 'UserController@update')
+    ->name('users.update');
 
 Route::get('contacto', 'ContactController@index')
     ->name('contact');
