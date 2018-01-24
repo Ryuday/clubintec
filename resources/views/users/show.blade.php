@@ -24,7 +24,8 @@
             <input type="text" class="form-control" value="{{ $user->is_admin }}" disabled>
         </div>
     </div>
-    <div class="form-group">
+    @if(Auth::user()->isAdmin)
+      <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
           <a class="btn btn-primary" href="{{ route('users.edit', ['id' => $user->id]) }}">
             Editar
@@ -33,5 +34,6 @@
             Regresar
           </a>
         </div>
-    </div>
+      </div>
+    @endif
 @endsection

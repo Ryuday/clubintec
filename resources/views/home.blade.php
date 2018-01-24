@@ -3,12 +3,22 @@
 @section('subtitle')
   <div class="content">
     <div class="row">
-      <div class="col-md-4">
-        <h5>Listado de usuarios</h5>
-      </div>
-      <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-8">
-        <a class="btn btn-primary" href="#">Registrar usuario</a>
-      </div>
+        <div class="col-md-4">
+          <h5>
+            @if(Auth::user()->isAdmin)
+              Listado de usuarios
+            @else
+              Datos del usuario
+            @endif
+          </h5>
+        </div>
+        <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-8">
+          @if(Auth::user()->isAdmin)
+            <a class="btn btn-primary" href="#">Registrar usuario</a>
+          @else
+            <a class="btn btn-primary" href="{{ route('users.edit', ['id' => Auth::user()->id]) }}">Actualizar usuario</a>
+          @endif
+        </div>
     </div>
   </div>
 @endsection
@@ -30,7 +40,7 @@
         </thead>
     </table>
   @else
-    <a href="{{ route('users.show', ['id' => Auth::user()->id]) }}">Ver detalles</a>
+    @include('users.show', ['user' => Auth::user()])
   @endif
 
 @endsection

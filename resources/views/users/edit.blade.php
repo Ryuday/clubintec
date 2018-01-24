@@ -53,18 +53,26 @@
                 <button type="submit" class="btn btn-success">
                   Actualizar usuario
                 </button>
-                <a class="btn btn-danger" href="{{ route('users.show', ['id' => $user->id]) }}">
-                  Cancelar
-                </a>
+                @if(Auth::user()->isAdmin)
+                  <a class="btn btn-danger" href="{{ route('users.show', ['id' => $user->id]) }}">
+                    Cancelar
+                  </a>
+                @else
+                  <a class="btn btn-danger" href="{{ route('home') }}">
+                    Regresar
+                  </a>
+                @endif
             </div>
         </div>
 
       </form>
-      <div class="form-group">
-          <div class="col-md-8 col-md-offset-4">
-              <a class="btn btn-link" href="{{ route('home') }}">
-                Regresar al listado de usuarios
-              </a>
-          </div>
-      </div>
+      @if(Auth::user()->isAdmin)
+        <div class="form-group">
+            <div class="col-md-8 col-md-offset-4">
+                <a class="btn btn-link" href="{{ route('home') }}">
+                  Regresar al listado de usuarios
+                </a>
+            </div>
+        </div>
+      @endif
 @endsection
