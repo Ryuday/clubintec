@@ -80,6 +80,7 @@
                         <a href="{{ route('login') }}">Iniciar Sesión</a>
                         <a href="{{ route('register') }}">Registrar</a>
                     @endauth
+                    <a href="{{ route('contact') }}">Contacto</a>
                 </div>
             @endif
 
