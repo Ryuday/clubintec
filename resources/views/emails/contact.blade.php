@@ -8,7 +8,7 @@
   @endif
   <form class="form-horizontal" method="POST" action="{{ route('contact') }}">
       {{ csrf_field() }}
-
+    @guest
       <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
           <label for="name" class="col-md-4 control-label">Nombre</label>
 
@@ -36,7 +36,7 @@
               @endif
           </div>
       </div>
-
+    @endguest
       <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
           <label for="title" class="col-md-4 control-label">Titulo de mensaje</label>
 
