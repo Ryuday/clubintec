@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\DataTables;
+use DataTables;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\CollectionDataTable;
 
