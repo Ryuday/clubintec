@@ -58,8 +58,14 @@ class HomeController extends Controller
     public function edit(User $user)
     {
       $title = 'Actualizar usuario';
+      $roles = [
+        1 => "Administrador",
+        2 => "Docente",
+        3 => "Secretaria",
+        4 => "Estudiante"
+      ];
 
-      return view('users.edit', compact('title', 'user'));
+      return view('users.edit', compact('title', 'user', 'roles'));
     }
 
 }

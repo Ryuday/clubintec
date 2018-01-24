@@ -35,6 +35,25 @@
                 @endif
             </div>
         </div>
+      @if(Auth::user()->is_admin)
+        <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
+            <label for="is_admin" class="col-md-4 control-label">Rol del usuario</label>
+
+            <div class="col-md-6">
+                <select id="is_admin" class="form-control" name="is_admin" selected=1 style="height: 36px">
+                      <option value="0">Seleccione</option>
+                      @foreach($roles as $id => $rol)
+                         <option value="{{ $id }}" {{ $user->is_admin == $id ? 'selected="selected"' : '' }}>{{ $rol }}</option>
+                      @endforeach
+                </select>
+                @if ($errors->has('is_admin'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('is_admin') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+      @endif
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="password" class="col-md-4 control-label">Contraseña</label>
 
