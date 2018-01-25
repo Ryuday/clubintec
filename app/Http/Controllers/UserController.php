@@ -28,6 +28,7 @@ class UserController extends Controller
       {
         $data = request()->validate([
           'name' => 'required',
+          'username' => 'required|unique:users,username,'.$user->username,
           'email' => 'required|email|unique:users,email',
           'password' => 'required|min:6',
           'role' => 'required|numeric|in:1,2,3,4',
@@ -35,6 +36,7 @@ class UserController extends Controller
 
         User::create([
           'name' => $data['name'],
+          'username' => $data['username'],
           'email' => $data['email'],
           'password' => bcrypt($data['password']),
           'role' => $data['role']
@@ -60,6 +62,7 @@ class UserController extends Controller
       {
         $data = request()->validate([
           'name' => 'required',
+          'username' => 'required|unique:users,username,'.$user->username,
           'email' => 'required|email|unique:users,email,'.$user->id,
           'password' => '',
           'password_confirmation' => 'same:password',

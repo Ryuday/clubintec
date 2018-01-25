@@ -13,6 +13,12 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-md-4 control-label">Usuario</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" value="{{ $user->username }}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-md-4 control-label">Dirección de Correo</label>
         <div class="col-md-6">
             <input type="text" class="form-control" value="{{ $user->email }}" disabled>
