@@ -70,3 +70,5 @@ Route::post('email', function (Request $request)
 {
   Mail::to('clubintec@gmail.com')->send(new \App\Mail\EmailUser($request->name));
 })->name('message');
+Route::get('pensum', 'PensumController@index')
+    ->name('pensum');
