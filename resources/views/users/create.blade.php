@@ -33,7 +33,7 @@
                 @endif
             </div>
         </div>
-      @if(Auth::user()->role)
+      @if(Auth::user()->role_id == 1)
         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
             <label for="role" class="col-md-4 control-label">Rol del usuario</label>
 
@@ -87,7 +87,7 @@
                 <button type="submit" class="btn btn-success">
                   Registrar usuario
                 </button>
-                @if(Auth::user()->role)
+                @if(Auth::user()->role_id == 1)
                   <a class="btn btn-danger" href="{{ route('home') }}">
                     Cancelar
                   </a>

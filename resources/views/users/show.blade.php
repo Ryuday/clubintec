@@ -24,7 +24,7 @@
             <input type="text" class="form-control" value="{{ $user->role->title }}" disabled>
         </div>
     </div>
-    @if(Auth::user()->role)
+    @if(Auth::user()->role_id == 1)
       <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
           <a class="btn btn-primary" href="{{ route('users.edit', ['id' => $user->id]) }}">
