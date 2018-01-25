@@ -11,23 +11,48 @@ use Yajra\DataTables\CollectionDataTable;
 
 class UserController extends Controller
 {
+      public $roles = [
+                1 => "Administrador",
+                2 => "Docente",
+                3 => "Secretaria",
+                4 => "Estudiante"
+              ];
+
+      public function create()
+      {
+        $roles = $this->roles;
+        return view('users.create', compact('roles'));
+      }
+
+      public function store()
+      {
+        $data = request()->validate([
+          'name' => 'required',
+          'email' => 'required|email|unique:users,email',
+          'password' => 'required|min:6',
+          'role' => 'required|numeric|in:1,2,3,4',
+        ]);
+
+        User::create([
+          'name' => $data['name'],
+          'email' => $data['email'],
+          'password' => bcrypt($data['password']),
+          'role' => $data['role']
+        ]);
+
+        $user = DB::table('users')->where('email', $data['email'])->first();
+
+        return redirect()->route('users.show', ['id' => $user->id]);
+      }
 
       public function show(User $user)
       {
-
         return view('users.show', compact('user'));
       }
 
       public function edit(User $user)
       {
-        $title = 'Actualizar usuario';
-        $roles = [
-          1 => "Administrador",
-          2 => "Docente",
-          3 => "Secretaria",
-          4 => "Estudiante"
-        ];
-
+        $roles = $this->roles;
         return view('users.edit', compact('title', 'user', 'roles'));
       }
 
@@ -38,8 +63,8 @@ class UserController extends Controller
           'email' => 'required|email|unique:users,email,'.$user->id,
           'password' => '',
           'password_confirmation' => 'same:password',
+          'role'  => 'required|numeric|in:1,2,3,4',
         ]);
-
         if($data['password'] != null){
           $data['password'] = bcrypt($data['password']);
         }else {
@@ -48,6 +73,8 @@ class UserController extends Controller
         }
 
         $user->update($data);
+
+        flash('Datos actualizados correctamente')->success();
 
         return redirect()->route('users.show', ['user' => $user]);
       }

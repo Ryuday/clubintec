@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', "Crear usuario")
-@section('subtitle', "{$title}")
+@section('subtitle', "Actualizar usuario")
 
 @section('content')
 
@@ -35,20 +35,29 @@
                 @endif
             </div>
         </div>
-      @if(Auth::user()->is_admin)
-        <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
-            <label for="is_admin" class="col-md-4 control-label">Rol del usuario</label>
+      @if(Auth::user()->role)
+        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+            <label for="role" class="col-md-4 control-label">Rol del usuario</label>
 
             <div class="col-md-6">
-                <select id="is_admin" class="form-control" name="is_admin" selected=1 style="height: 36px">
+                <select id="role" class="form-control" name="role" selected=1 style="height: 36px">
                       <option value="0">Seleccione</option>
                       @foreach($roles as $id => $rol)
-                         <option value="{{ $id }}" {{ $user->is_admin == $id ? 'selected="selected"' : '' }}>{{ $rol }}</option>
+                         <option value="{{ $id }}" {{
+                           old('role', $user->role) == null
+                            ? ($user->role == $id
+                                 ? 'selected="selected"'
+                                 : '')
+                            : (old('role', $user->role) == $id
+                                  ? 'selected="selected"'
+                                  : '')
+
+                         }}>{{ $rol }}</option>
                       @endforeach
                 </select>
-                @if ($errors->has('is_admin'))
+                @if ($errors->has('role'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('is_admin') }}</strong>
+                        <strong>{{ $errors->first('role') }}</strong>
                     </span>
                 @endif
             </div>
@@ -84,7 +93,7 @@
                 <button type="submit" class="btn btn-success">
                   Actualizar usuario
                 </button>
-                @if(Auth::user()->is_admin)
+                @if(Auth::user()->role)
                   <a class="btn btn-danger" href="{{ route('users.show', ['id' => $user->id]) }}">
                     Cancelar
                   </a>
@@ -97,7 +106,7 @@
         </div>
 
       </form>
-      @if(Auth::user()->is_admin)
+      @if(Auth::user()->role)
         <div class="form-group">
             <div class="col-md-8 col-md-offset-4">
                 <a class="btn btn-link" href="{{ route('home') }}">

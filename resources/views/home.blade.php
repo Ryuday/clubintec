@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-4">
           <h5>
-            @if(Auth::user()->is_admin)
+            @if(Auth::user()->role)
               Listado de usuarios
             @else
               Datos del usuario
@@ -13,8 +13,8 @@
           </h5>
         </div>
         <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-8">
-          @if(Auth::user()->is_admin)
-            <a class="btn btn-primary" href="#">Registrar usuario</a>
+          @if(Auth::user()->role)
+            <a class="btn btn-primary" href="{{ route('users.create', ['role' => 'administrador']) }}">Registrar usuario</a>
           @else
             <a class="btn btn-primary" href="{{ route('users.edit', ['id' => Auth::user()->id]) }}">Actualizar usuario</a>
           @endif
@@ -28,13 +28,14 @@
       {{ session('status') }}
     </div>
   @endif
-  @if ( Auth::user()->is_admin === 1)
+  @if ( Auth::user()->role)
     <table class="table table-bordered" id="users-table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>role</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -55,6 +56,7 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
+            { data: 'role', name: 'role' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });
