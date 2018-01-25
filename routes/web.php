@@ -32,43 +32,34 @@ $this->get('contraseña/restablecer', 'Auth\ForgotPasswordController@showLinkReq
 $this->post('contraseña/correo', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 $this->get('contraseña/restablecer/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('contraseña/restablecer', 'Auth\ResetPasswordController@reset');
-
+// Pagina de Inicio
 Route::get('/inicio', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
-
+// Tabla de Datos (DataTables)
 Route::get('/inicio/datos', 'HomeController@anyData')
 ->name('datatables.data');
-
+// Registrar Usuario (Solo el Administrador)
 Route::get('/{role}/nuevo', 'UserController@create')
     ->name('users.create');
-
+// Metodo POST Registro de datos (Solo el Administrador)
 Route::post('/inicio', 'UserController@store');
-
+// Ver Datos del Usuario
 Route::get('/usuarios/{user}', 'UserController@show')
     ->where('user', '[0-9]+')
     ->name('users.show');
-
+// Actualizar Datos del Usuario
 Route::get('/usuarios/{user}/editar', 'UserController@edit')
     ->name('users.edit');
-
+// Metodo PUT Actualizando los Datos
 Route::put('/usuarios/{user}', 'UserController@update')
     ->name('users.update');
-
+// Pagina para enviar mensajes al correo del sistema
+// (Contacto con el administrador atravez del sistema)
 Route::get('contacto', 'ContactController@index')
     ->name('contact');
-
+// Enviando correo al sistema
 Route::post('contacto', 'ContactController@store')
     ->name('contact');
-/*
-Route::get('email', function ()
-{
-  //Mail::to('clubintec@gmail.com')->send(new \App\Mail\EmailUser());
-  return new \App\Mail\EmailUser('Elio Mayz');
-})->name('email');
-*/
-Route::post('email', function (Request $request)
-{
-  Mail::to('clubintec@gmail.com')->send(new \App\Mail\EmailUser($request->name));
-})->name('message');
+// Pagina de Inicio de los programas de estudios
 Route::get('pensum', 'PensumController@index')
     ->name('pensum');
