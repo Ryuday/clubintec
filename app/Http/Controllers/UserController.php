@@ -63,7 +63,7 @@ class UserController extends Controller
           'email' => 'required|email|unique:users,email,'.$user->id,
           'password' => '',
           'password_confirmation' => 'same:password',
-          'role'  => 'required|numeric|in:1,2,3,4',
+          'role_id'  => 'required|numeric|in:1,2,3,4',
         ]);
         if($data['password'] != null){
           $data['password'] = bcrypt($data['password']);

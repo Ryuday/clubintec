@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'role'
+        'name', 'email', 'password', 'username', 'role_id'
     ];
 
     protected $casts = [
@@ -34,5 +34,10 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
        $this->notify(new CustomResetPassword($token));
+    }
+
+    public function role()
+    {
+      return $this->belongsTo(Role::class);
     }
 }

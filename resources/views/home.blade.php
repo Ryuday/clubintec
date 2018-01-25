@@ -56,7 +56,7 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
-            { data: 'role', name: 'role' },
+            { data: 'title', name: 'role' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

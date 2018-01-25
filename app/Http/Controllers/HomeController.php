@@ -28,7 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
 
         return view('home', compact('users'));
 
@@ -41,8 +40,12 @@ class HomeController extends Controller
      */
     public function anyData()
     {
-        $model = User::query();
-        return DataTables::eloquent($model)
+        $model = User::query()
+                  ->select('users.id','name','email', 'title')
+                  ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
+                  ->get();
+
+        return DataTables::collection($model)
                 ->addColumn('action', function ($user) {
                   return '<a href="'.route("users.show", ["id" => $user->id]).'" class="btn btn-xs btn-success">Ver</a> <a href="'.route("users.edit", ["id" => $user->id]).'" class="btn btn-xs btn-primary">Editar</a>';
                 })
