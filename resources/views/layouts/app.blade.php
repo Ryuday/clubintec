@@ -56,10 +56,20 @@
                 <a href="{{ route('contact') }}">Contacto</a>
               </li>
             @endif
+            @unless (Request::url() == route('pensum'))
+              <li class="nav-item">
+                <a href="{{ route('pensum') }}">Pensum</a>
+              </li>
+            @endif
           @else
             @if (Request::url() == route('contact'))
               <li class="nav-item">
                 <a href="{{ route('home') }}">Inicio</a>
+              </li>
+            @endif
+            @unless (Request::url() == route('pensum'))
+              <li class="nav-item">
+                <a href="{{ route('pensum') }}">Pensum</a>
               </li>
             @endif
             <li class="nav-item dropdown">
