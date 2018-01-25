@@ -36,6 +36,11 @@ class User extends Authenticatable
        $this->notify(new CustomResetPassword($token));
     }
 
+    public function profession()
+    {
+      return $this->belongsTo(Profession::class);
+    }
+
     public function role()
     {
       return $this->belongsTo(Role::class);
