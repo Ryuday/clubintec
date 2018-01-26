@@ -27,7 +27,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label">Privilegios</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" value="{{ $user->role->title }}" disabled>
+            <input type="text" class="form-control" value="{{ isset($user->role->title) ? $user->role->title : 'Sin Asignar' }}" disabled>
         </div>
     </div>
     @if(Auth::user()->role_id == 1)
