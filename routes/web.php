@@ -36,7 +36,7 @@ $this->post('contraseña/restablecer', 'Auth\ResetPasswordController@reset');
 Route::get('/inicio', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
 // Tabla de Datos (Usuarios)
-Route::get('/inicio/datos', 'HomeController@anyData')
+Route::get('/inicio/datos', 'DatatablesController@anyUsersData')
 ->name('datatables.data');
 // Registrar Usuario (Solo el Administrador)
 Route::get('/{role}/nuevo', 'UserController@create')
@@ -64,5 +64,5 @@ Route::post('contacto', 'ContactController@store')
 Route::get('/pensum', 'PensumController@index')
     ->name('pensum');
 // Tabla de Datos (Programas de Estudios)
-Route::get('/pensum/datos', 'PensumController@anyData')
+Route::get('/pensum/datos', 'DatatablesController@anyPensumData')
 ->name('datatables.pensum');
