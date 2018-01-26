@@ -10,7 +10,7 @@
         @if(Auth::user())
           @if(Auth::user()->role_id == 1)
             <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-8">
-              <a class="btn btn-primary" href="{{ route('users.create', ['role' => 'administrador']) }}">Registrar programa</a>
+              <a class="btn btn-primary" href="{{ route('pensums.create', ['role' => 'administrador']) }}">Registrar programa</a>
             </div>
           @endif
         @endif

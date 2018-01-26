@@ -9,7 +9,11 @@ class PensumController extends Controller
 {
     public function index()
     {
-        return view('pensum.index');
+        return view('pensums.index');
     }
 
+    public function create()
+    {
+      return view('pensums.create');
+    }
 }

@@ -69,3 +69,6 @@ Route::get('/pensum/datos', 'DatatablesController@anyPensumData')
 // Verificación de E-mail
 Route::get('registro/verificacion/{code}','VerifyEmailController@verify')
     ->name('verifyEmail');
+// Registrar Programa (Solo el Administrador)
+Route::get('{role}/programa/nuevo', 'PensumController@create')
+    ->name('pensums.create');
