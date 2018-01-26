@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', "Usuarios")
 @section('subtitle')
   <div class="content">
     <div class="row">
@@ -23,11 +22,6 @@
   </div>
 @endsection
 @section('content')
-  @if (session('status'))
-    <div class="alert alert-success">
-      {{ session('status') }}
-    </div>
-  @endif
   @if ( Auth::user()->role_id == 1)
     <table class="table table-bordered" id="users-table">
         <thead>
@@ -40,8 +34,6 @@
             </tr>
         </thead>
     </table>
-  @else
-    @include('users.show', ['user' => Auth::user()])
   @endif
 
 @endsection

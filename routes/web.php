@@ -65,4 +65,4 @@ Route::get('/pensum', 'PensumController@index')
     ->name('pensum');
 // Tabla de Datos (Programas de Estudios)
 Route::get('/pensum/datos', 'DatatablesController@anyPensumData')
-->name('datatables.pensum');
+    ->name('datatables.pensum');
