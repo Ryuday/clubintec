@@ -45,24 +45,24 @@
             </div>
         </div>
       @if(Auth::user()->role_id == 1)
-        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-            <label for="role" class="col-md-4 control-label">Rol del usuario</label>
+        <div class="form-group{{ $errors->has('role_id') ? ' has-error' : '' }}">
+            <label for="role_id" class="col-md-4 control-label">Rol del usuario</label>
 
             <div class="col-md-6">
-                <select id="role" class="form-control" name="role" selected=1 style="height: 36px">
+                <select id="role_id" class="form-control" name="role_id" selected=1 style="height: 36px">
                       <option value="0">Seleccione</option>
                       @foreach($roles as $id => $rol)
                          <option value="{{ $id }}" {{
-                            old('role') == $id
+                            old('role_id') == $id
                                 ? 'selected="selected"'
                                 : ''
 
                          }}>{{ $rol }}</option>
                       @endforeach
                 </select>
-                @if ($errors->has('role'))
+                @if ($errors->has('role_id'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('role') }}</strong>
+                        <strong>{{ $errors->first('role_id') }}</strong>
                     </span>
                 @endif
             </div>
