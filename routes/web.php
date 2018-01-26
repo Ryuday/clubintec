@@ -66,3 +66,6 @@ Route::get('/pensum', 'PensumController@index')
 // Tabla de Datos (Programas de Estudios)
 Route::get('/pensum/datos', 'DatatablesController@anyPensumData')
     ->name('datatables.pensum');
+// Verificación de E-mail
+Route::get('registro/verificacion/{code}','VerifyEmailController@verify')
+    ->name('verifyEmail');
