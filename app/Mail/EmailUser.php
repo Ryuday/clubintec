@@ -17,6 +17,8 @@ class EmailUser extends Mailable
     public $title;
     public $email;
     public $message;
+    public $view;
+    public $confirmation_code;
 
     /**
      * Create a new message instance.
@@ -25,11 +27,15 @@ class EmailUser extends Mailable
      */
     public function __construct($request)
     {
-        $data = $request->all();
+        $data = $request;
         $this->name = $data['name'];
         $this->title = $data['title'];
         $this->email = $data['email'];
-        $this->message = $data['message'];
+        if(isset($data['message'])) {
+          $this->message = $data['message'];
+        }
+        $this->view = $data['view'];
+        $this->confirmation_code = $data['confirmation_code'];
     }
     /**
      * Build the message.
@@ -39,7 +45,7 @@ class EmailUser extends Mailable
     public function build()
     {
         return $this->from($this->email, $this->name)
-                    ->markdown('emails.question')
+                    ->markdown($this->view)
                     ->subject($this->title);
     }
 }

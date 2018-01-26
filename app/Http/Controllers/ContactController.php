@@ -29,6 +29,7 @@ class ContactController extends Controller
       }else {
         $request['title'] = "No Registrados - ".$request['title'];
       }
+      $request['view'] = 'emails.question';
       Mail::to('clubintec@gmail.com', 'Contacto')
         ->send(new \App\Mail\EmailUser($request));
 
