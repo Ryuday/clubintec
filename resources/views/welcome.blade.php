@@ -91,7 +91,7 @@
 
                 <div class="links">
                     <a href="">Control de estudio</a>
-                    <a href="">Departamentos</a>
+                    <a href="{{ route('pensum') }}">Pensum</a>
                     <a href="">Bienestar Estudiantil</a>
                 </div>
             </div>

@@ -41,26 +41,26 @@
         <ul class="nav navbar-nav navbar-right">
           <!-- Authentication Links -->
           @guest
-            @if (Request::url() == route('register') || Request::url() == route('contact'))
+            @unless (Request::url() == route('login'))
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a>
               </li>
-            @endif
-            @if (Request::url() == route('login') || Request::url() == route('contact'))
+            @endunless
+            @unless (Request::url() == route('register'))
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('register') }}">Registrar</a>
               </li>
-            @endif
-            @if (Request::url() == route('login') || Request::url() == route('register'))
-              <li class="nav-item">
-                <a href="{{ route('contact') }}">Contacto</a>
-              </li>
-            @endif
+            @endunless
             @unless (Request::url() == route('pensum'))
               <li class="nav-item">
                 <a href="{{ route('pensum') }}">Pensum</a>
               </li>
             @endif
+            @unless (Request::url() == route('contact'))
+              <li class="nav-item">
+                <a href="{{ route('contact') }}">Contacto</a>
+              </li>
+            @endunless
           @else
             @if (Request::url() == route('contact'))
               <li class="nav-item">
@@ -70,6 +70,10 @@
             @unless (Request::url() == route('pensum'))
               <li class="nav-item">
                 <a href="{{ route('pensum') }}">Pensum</a>
+              </li>
+            @else
+              <li class="nav-item">
+                <a href="{{ route('home') }}">Inicio</a>
               </li>
             @endif
             <li class="nav-item dropdown">
